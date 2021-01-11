@@ -1,3 +1,4 @@
+//import Math;
 public class Radix{
 /*
 get nth digit of an int, where 0 is the ones column, 1 is the tens column etc.
@@ -7,7 +8,7 @@ nth(123,2) -> 1
 nth(-123,2) -> 1
 */
   public static int nth(int n, int col){
-    return n % //(col);
+    return n % (int)Math.pow(10,col) / 10;
   }
 
 /*
