@@ -41,26 +41,51 @@ The bucket[0] list will be merged first, then the bucket[1] etc.
     for(int i=0;i<buckets.length;i++){
       buckets[i]=new SortableLinkedList();
     }
-    int longest=0; //lenght of largest number
+    int longest=0; //length of largest number
     for(int i=0;i<data.size();i++){ //LSD pass
       buckets[nth(data.get(0),0)].add(data.get(0));
       if(length(data.get(0))>longest) longest=length(data.get(0));
-      data.remove(0); //where 0 is surrounded by parentheses, can replace with i
-      i--;
+      data.remove(0);
+      i--; //where 0 is surrounded by parentheses, can replace with i
     }
     merge(data,buckets);
     for(int i=1;i<longest;i++){
       for(int j=0;j<data.size();j++){
         buckets[nth(data.get(0),i)].add(data.get(0));
         data.remove(0);
-        j--;
+        j--; //where 0 is surrounded by parentheses, can replace with j
       }
       merge(data,buckets);
     }
   }
 
   public static void radixSort(SortableLinkedList data){
-
+    SortableLinkedList[]buckets=new SortableLinkedList[19];
+    for(int i=0;i<buckets.length;i++){
+      buckets[i]=new SortableLinkedList();
+    }
+    int longest=0; //length of longest number
+    while(data.size()>0){ //LSD pass
+      if(data.get(0)>=0){
+        buckets[nth(data.get(0),0)+9].add(data.get(0));
+      }else{
+        buckets[9-nth(data.get(0),0)].add(data.get(0));
+      }
+      if(length(data.get(0))>longest) longest=length(data.get(0));
+      data.remove(0);
+    }
+    merge(data,buckets);
+    for(int i=1;i<longest;i++){
+      while(data.size()>0){
+        if(data.get(0)>=0){
+          buckets[nth(data.get(0),0)+9].add(data.get(0));
+        }else{
+          buckets[9-nth(data.get(0),0)].add(data.get(0));
+        }
+        data.remove(0);
+      }
+      merge(data,buckets);
+    }
   }
 
 }
