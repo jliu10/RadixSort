@@ -43,21 +43,20 @@ The bucket[0] list will be merged first, then the bucket[1] etc.
     }
     int longest=0; //lenght of largest number
     for(int i=0;i<data.size();i++){ //LSD pass
-      buckets[nth(data.get(i),0)].add(data.get(i));
-      if(length(data.get(i))>longest) longest=length(data.get(i));
-      data.remove(i);
+      buckets[nth(data.get(0),0)].add(data.get(0));
+      if(length(data.get(0))>longest) longest=length(data.get(0));
+      data.remove(0); //where 0 is surrounded by parentheses, can replace with i
       i--;
     }
     merge(data,buckets);
     for(int i=1;i<longest;i++){
       for(int j=0;j<data.size();j++){
-        buckets[nth(data.get(j),i)].add(data.get(j));
-        data.remove(j);
+        buckets[nth(data.get(0),i)].add(data.get(0));
+        data.remove(0);
         j--;
       }
       merge(data,buckets);
     }
-    //System.out.println(longest);
   }
 
   public static void radixSort(SortableLinkedList data){
