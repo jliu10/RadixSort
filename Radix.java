@@ -66,22 +66,17 @@ The bucket[0] list will be merged first, then the bucket[1] etc.
     }
     int longest=0; //length of longest number
     while(data.size()>0){ //LSD pass
-      if(data.get(0)>=0){
-        buckets[nth(data.get(0),0)+9].add(data.get(0));
-      }else{
-        buckets[9-nth(data.get(0),0)].add(data.get(0));
-      }
+      if(data.get(0)>=0) buckets[nth(data.get(0),0)+9].add(data.get(0));
+      else buckets[9-nth(data.get(0),0)].add(data.get(0));
       if(length(data.get(0))>longest) longest=length(data.get(0));
       data.remove(0);
     }
+    //System.out.println(longest);
     merge(data,buckets);
     for(int i=1;i<longest;i++){
       while(data.size()>0){
-        if(data.get(0)>=0){
-          buckets[nth(data.get(0),0)+9].add(data.get(0));
-        }else{
-          buckets[9-nth(data.get(0),0)].add(data.get(0));
-        }
+        if(data.get(0)>=0) buckets[nth(data.get(0),i)+9].add(data.get(0));
+          else buckets[9-nth(data.get(0),i)].add(data.get(0));
         data.remove(0);
       }
       merge(data,buckets);
