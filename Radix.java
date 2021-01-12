@@ -36,4 +36,23 @@ The bucket[0] list will be merged first, then the bucket[1] etc.
     }
   }
 
+  public static void radixSortSimple(SortableLinkedList data){
+    SortableLinkedList[]buckets=new SortableLinkedList[10];
+    for(int i=0;i<buckets.length;i++){
+      buckets[i]=new SortableLinkedList();
+    }
+    int longest=0; //lenght of largest number
+    for(int i=0;i<data.size();i++){ //LSD pass
+      buckets[nth(data.get(i),0)].add(data.get(i));
+      data.remove(i);
+      if(length(data.get(i))>longest) longest=length(data.get(i));
+    }
+    merge(data,buckets);
+    //System.out.println(longest);
+  }
+
+  public static void radixSort(SortableLinkedList data){
+
+  }
+
 }
