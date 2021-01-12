@@ -8,6 +8,7 @@ public class Tester{
     System.out.println(Radix.nth(-123,0));
     System.out.println(Radix.nth(0,2));
     System.out.println(Radix.nth(0,0));
+    System.out.println(Radix.nth(-123,3));
 
     System.out.println("---TESTING LENGTH---");
     System.out.println(Radix.length(0));
@@ -15,6 +16,7 @@ public class Tester{
     System.out.println(Radix.length(-10));
     System.out.println(Radix.length(5112));
 
+    /*
     System.out.println("---TESTING MERGE---");
     MyLinkedList y=new MyLinkedList();
     //y.add("4"); y.add("5");
@@ -28,5 +30,14 @@ public class Tester{
     System.out.println(x);
     Radix.merge(x,bucketsTest);
     System.out.println(x);
+    */
+
+    System.out.println("---TESTING RADIXSORTSIMPLE---");
+    SortableLinkedList x=new SortableLinkedList();
+    x.add(10); x.add(52); x.add(5); x.add(209); x.add(19); x.add(44);
+    System.out.println(x);
+    Radix.radixSortSimple(x);
+    System.out.println(x);
+
   }
 }
