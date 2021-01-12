@@ -44,8 +44,9 @@ The bucket[0] list will be merged first, then the bucket[1] etc.
     int longest=0; //lenght of largest number
     for(int i=0;i<data.size();i++){ //LSD pass
       buckets[nth(data.get(i),0)].add(data.get(i));
-      data.remove(i);
       if(length(data.get(i))>longest) longest=length(data.get(i));
+      data.remove(i);
+      i--;
     }
     merge(data,buckets);
     //System.out.println(longest);
