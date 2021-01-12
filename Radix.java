@@ -42,18 +42,16 @@ The bucket[0] list will be merged first, then the bucket[1] etc.
       buckets[i]=new SortableLinkedList();
     }
     int longest=0; //length of largest number
-    for(int i=0;i<data.size();i++){ //LSD pass
+    while(data.size()>0){ //LSD pass
       buckets[nth(data.get(0),0)].add(data.get(0));
       if(length(data.get(0))>longest) longest=length(data.get(0));
       data.remove(0);
-      i--; //where 0 is surrounded by parentheses, can replace with i
     }
     merge(data,buckets);
     for(int i=1;i<longest;i++){
-      for(int j=0;j<data.size();j++){
+      while(data.size()>0){
         buckets[nth(data.get(0),i)].add(data.get(0));
         data.remove(0);
-        j--; //where 0 is surrounded by parentheses, can replace with j
       }
       merge(data,buckets);
     }
