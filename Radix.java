@@ -49,6 +49,14 @@ The bucket[0] list will be merged first, then the bucket[1] etc.
       i--;
     }
     merge(data,buckets);
+    for(int i=1;i<longest;i++){
+      for(int j=0;j<data.size();j++){
+        buckets[nth(data.get(j),i)].add(data.get(j));
+        data.remove(j);
+        j--;
+      }
+      merge(data,buckets);
+    }
     //System.out.println(longest);
   }
 
