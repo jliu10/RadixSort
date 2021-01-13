@@ -43,15 +43,17 @@ The bucket[0] list will be merged first, then the bucket[1] etc.
     }
     int longest=0; //length of largest number
     while(data.size()>0){ //LSD pass
-      buckets[nth(data.get(0),0)].add(data.get(0));
-      if(length(data.get(0))>longest) longest=length(data.get(0));
-      data.remove(0);
+      int n=data.remove(0);
+      buckets[nth(n,0)].add(n);
+      if(length(n)>longest) longest=length(n);
+      //data.remove(0);
     }
     merge(data,buckets);
     for(int i=1;i<longest;i++){
       while(data.size()>0){
-        buckets[nth(data.get(0),i)].add(data.get(0));
-        data.remove(0);
+        int n=data.remove(0);
+        buckets[nth(n,i)].add(n);
+        //data.remove(0);
       }
       merge(data,buckets);
     }
